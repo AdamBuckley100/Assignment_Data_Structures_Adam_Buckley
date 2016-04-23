@@ -1,14 +1,7 @@
 /**
- * NOTE: I borrowed this class from The person below and made alterations
- * for it to better suit my program's implementation.
- * 
  * reads bits-at-a-time where the number of bits is between 1 and 32.
  * Updated for version 2.0 to extend java.io.InputStream
  * 
- * <P>
- * @author Owen Astrachan
- * @version 1.0, July 2000
- * @version 2.0, October 2004 
  */
 public class Node implements Comparable<Node>
 

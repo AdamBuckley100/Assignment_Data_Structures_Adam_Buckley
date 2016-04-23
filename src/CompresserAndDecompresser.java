@@ -144,7 +144,7 @@ public class CompresserAndDecompresser
 			String[] hashMapThenHuffmanCode = theLineWhichWeAreReading.split("~");
 			String letterFollowedByItsHuffCode = hashMapThenHuffmanCode[0];
 
-			// running total needed.
+			// running total needed (i.e. append to the String variable called theWordInHuffmanFormat.
 			theWordInHuffmanFormat = theWordInHuffmanFormat + hashMapThenHuffmanCode[1];
 
 			// (line below): I am spliting up each entry in the letterFollowedByItsHuffCode hash map
@@ -162,21 +162,21 @@ public class CompresserAndDecompresser
 				// in compression method).
 				String[] aLetterThenItsInstance = singleLetter.split("¬"); 
 				
-				// the instance of the letter.. (which is the value of the letterAnditsHuffCode hashmap.
+				// The Letter itself (which is the key of the hashmap entitled letterAnditsHuffCode.
 				String theInstance = aLetterThenItsInstance[0];
 				
-				// The Letter itself (which is the key of the hashmap entitled letterAnditsHuffCode.
+				// the instance of the letter.. (which is the value of the letterAnditsHuffCode hashmap.
 				String theLetter = aLetterThenItsInstance[1];
 				
 				// Finally.. append to my J Text area ...
-				ExecutionAndGui.appendTo(("\n" + (String.valueOf(theLetter))) + " ..paired with.. " + (String.valueOf(theInstance)));
+				ExecutionAndGui.appendTo(("\n" + (String.valueOf(theInstance))) + " ...paired with... " + (String.valueOf(theLetter)));
 				
 				// now populate the decomMapLetterToHuff hashmap (maps single letters to the no. of times that letter
 				// is in the word).
 				decomMapLetterToHuff.put(theLetter, theInstance);
 			}
 			
-			// o.k now keep reading.. time to work with the huffman code in right sequence..
+			// read the line again just... and now it's time to work with the huffman code in right sequence..
 			theLineWhichWeAreReading = buffRead.readLine();
 			
 		}
@@ -223,12 +223,13 @@ public class CompresserAndDecompresser
 				OneOrSeveralHuffmanCodeBits = theWordInHuffmanFormat.substring(0, Integer.valueOf(upToWhatBitWeAreLookingAt));
 			}
 
-			// (below) running total has been added to (huffman code bits have been added to it)
+			// (below) running total has been added to (huffman code bits have been added to it) .. 
+			// below is get(KEY) so the value returned is the letter.
 			theWordDecompressedToEnglish += decomMapLetterToHuff.get(OneOrSeveralHuffmanCodeBits);
 
 			// (below) what is happening is I am now assigning theWordInHuffmanFormat (which the huffman code portion we are traversing through
 			// looking for a match for a huffman code in the hashmap) to only the huffman code part that I have found no matches for in 
-			// the hashmap. (repeating won't happen).
+			// the hashmap. (repeating won't happen). Below is the word in huffman form thats remaining to read in...
 			theWordInHuffmanFormat = theWordInHuffmanFormat.substring(Integer.valueOf(upToWhatBitWeAreLookingAt), theWordInHuffmanFormat.length());
 		}
 		ExecutionAndGui.appendTo("\n\n" + "The word Decompressed is ...: " + (String.valueOf(theWordDecompressedToEnglish)));
